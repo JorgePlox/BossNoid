@@ -13,8 +13,10 @@ public class Block : MonoBehaviour
 {
     // El primero e sla duración del bloque
     //el segundo la duración minima cuando no puede seguir siendo golpeado por requisito previo
-    [SerializeField] int blockDuration = 1;
+    public int blockDuration = 1;
     [SerializeField] int blockDurationProtected = 1;
+
+    public int maxBlockDuration;
 
 
     public GameObject[] previusBlocks;
@@ -26,9 +28,15 @@ public class Block : MonoBehaviour
     //GameFeel
     SpriteRenderer spriteRenderder;
 
+    private void Awake()
+    {
+        maxBlockDuration = blockDuration;
+    }
+
     private void Start()
     {
         spriteRenderder = GetComponent<SpriteRenderer>();
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -59,6 +67,7 @@ public class Block : MonoBehaviour
 
                     case BlockType.bossBlock:
                         DestroyBossBlock();
+                        GameManager.sharedInstance.DecreaseBlockCount();
                         break;
 
                     case BlockType.lastBossBlock:
@@ -107,21 +116,34 @@ public class Block : MonoBehaviour
         if (blockType != BlockType.lastBossBlock)
         {
             this.GetComponent<SpriteRenderer>().enabled = false;
+            
+            if (GetComponentInChildren<ParticleSystem>() != null)
+            {
+                GetComponentInChildren<ParticleSystem>().Play();
+                Destroy(this.gameObject, GetComponentInChildren<ParticleSystem>().main.duration);
+            }
+
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
         else 
         {
             isDead = true;
         }
         
-        if (GetComponentInChildren<ParticleSystem>() != null)
-        {
-            GetComponentInChildren<ParticleSystem>().Play();
-            Destroy(this.gameObject, GetComponentInChildren<ParticleSystem>().main.duration);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+    }
+
+    public void PlayFinalParticle()
+    {
+        GetComponentInChildren<ParticleSystem>().Play();
+    }
+
+    public void KillBoss()
+    {
+        GameManager.sharedInstance.DecreaseBlockCount();
+        Destroy(this.gameObject);
     }
 
 }

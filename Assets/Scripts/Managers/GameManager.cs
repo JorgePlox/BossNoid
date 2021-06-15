@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager sharedInstance; 
-    int blockCount = 0;
+    public int blockCount = 0;
 
     //pause
     bool isPaused = false;

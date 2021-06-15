@@ -5,7 +5,7 @@ using UnityEngine;
 public class Idle4Skele : StateMachineBehaviour
 {
     int nextMovement;
-    bool isFase5 = false;
+    bool isDialogue2 = false;
 
     GameObject chest;
 
@@ -21,7 +21,7 @@ public class Idle4Skele : StateMachineBehaviour
     {
         EnterFase5(animator);
 
-        if (!isFase5)
+        if (!isDialogue2)
         {
 
             if (nextMovement == 1)
@@ -55,15 +55,14 @@ public class Idle4Skele : StateMachineBehaviour
 
     void EnterFase5(Animator anim)
     {
-        if (!isFase5)
+        if (!isDialogue2)
         {
             if (chest == null)
             {
-                anim.SetBool("Fase5", true);
-                isFase5 = true;
+                anim.SetBool("Dialogue2", true);
+                isDialogue2 = true;
             }
         }
     }
-
 
 }

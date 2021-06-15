@@ -78,4 +78,5 @@ public class PlayerController : MonoBehaviour
         if (playerRenderer != null) playerRenderer.color = Color.white;
         isParalized = false;
     }
+
 }
