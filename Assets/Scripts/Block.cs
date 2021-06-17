@@ -25,6 +25,8 @@ public class Block : MonoBehaviour
 
     public bool isDead = false;
 
+    public CameraShake cameraShake;
+
     //GameFeel
     SpriteRenderer spriteRenderder;
 
@@ -121,6 +123,7 @@ public class Block : MonoBehaviour
             {
                 GetComponentInChildren<ParticleSystem>().Play();
                 Destroy(this.gameObject, GetComponentInChildren<ParticleSystem>().main.duration);
+                Shake();
             }
 
             else
@@ -144,6 +147,14 @@ public class Block : MonoBehaviour
     {
         GameManager.sharedInstance.DecreaseBlockCount();
         Destroy(this.gameObject);
+    }
+
+    void Shake()
+    {
+        if (cameraShake != null)
+        {
+            cameraShake.enabled = true;
+        }
     }
 
 }

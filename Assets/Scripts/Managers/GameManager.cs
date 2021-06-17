@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager sharedInstance; 
@@ -13,6 +14,13 @@ public class GameManager : MonoBehaviour
     //puede tirar la bola?
     public bool canThrowBall = true;
     GameObject ballObject;
+
+    //Conteo del tiempo
+    public float myTime = 0.0f;
+    public float bestTime;
+
+    //PauseMenu
+    public Canvas pauseCanvas;
 
 
 
@@ -29,6 +37,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         CountBlocks();
+        myTime = 0.0f;
+        bestTime = GetLevelBestTime();
+        ResumeGame();
+
+
     }
 
 
@@ -46,6 +59,11 @@ public class GameManager : MonoBehaviour
                 PauseGame();
             }
         }
+
+        if (!isPaused || canThrowBall)
+        {
+            myTime += Time.deltaTime;
+        }
     }
 
     void CountBlocks()
@@ -58,18 +76,40 @@ public class GameManager : MonoBehaviour
         blockCount--;
         if (blockCount == 0)
         {
-            LevelManager.sharedInstance.ChangeScene("MainMenu");
+            WinRound();
+
         }
     }
 
-    void ResumeGame()
+    void WinRound()
     {
+        SetFinishedLevel();
+        float currentBestTime = GetLevelBestTime();
+        if (myTime < currentBestTime)
+        {
+            SetLevelBestTime(myTime);
+        }
+        
+        LevelManager.sharedInstance.ChangeScene("LevelSelector");
+
+    }
+
+    public void ResumeGame()
+    {
+        if (pauseCanvas != null)
+        {
+            pauseCanvas.enabled = false;
+        }
         Time.timeScale = 1.0f;
         isPaused = false;
     }
 
-    void PauseGame()
+    public void PauseGame()
     {
+        if (pauseCanvas != null)
+        {
+            pauseCanvas.enabled = true;
+        }
         Time.timeScale = 0.0f;
         isPaused = true;
     }
@@ -77,6 +117,54 @@ public class GameManager : MonoBehaviour
     public void ResetBall()
     {
         ballObject.GetComponent<Ball>().ResetLaunch();
+    }
+
+
+    float GetLevelBestTime()
+    {
+        Levels currentLevel = LevelManager.currentLevel;
+        switch (currentLevel)
+        {
+            case Levels.SkeleBoss:
+                return PlayerPrefs.GetFloat("BestTimeSkele", 5999f);
+
+            case Levels.Alien:
+                return PlayerPrefs.GetFloat("BestTimeAlien", 5999f);
+        }
+
+        return 5999f;
+    }
+
+    void SetLevelBestTime(float newTime)
+    {
+        Levels currentLevel = LevelManager.currentLevel;
+        switch (currentLevel)
+        {
+            case Levels.SkeleBoss:
+               PlayerPrefs.SetFloat("BestTimeSkele", newTime);
+                break;
+
+            case Levels.Alien:
+                PlayerPrefs.SetFloat("BestTimeAlien", newTime);
+                break;
+        }
+    }
+
+    void SetFinishedLevel()
+    {
+        Levels currentLevel = LevelManager.currentLevel;
+        switch (currentLevel)
+        {
+            case Levels.SkeleBoss:
+                PlayerPrefs.SetInt("FinishSkele", 1);
+                Debug.Log("finish");
+                break;
+
+            case Levels.Alien:
+                PlayerPrefs.SetInt("FinishAlien", 1);
+                break;
+
+        }
     }
 
 }

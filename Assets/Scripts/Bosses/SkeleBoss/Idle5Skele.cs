@@ -13,7 +13,7 @@ public class Idle5Skele : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         head = GameObject.Find("Head");
-        nextMovement = Random.Range(1, 3);
+        nextMovement = Random.Range(1, 4);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -32,6 +32,11 @@ public class Idle5Skele : StateMachineBehaviour
         else if (nextMovement == 2)
         {
             animator.SetTrigger("Head2");
+        }
+
+        else if (nextMovement == 3)
+        {
+            animator.SetTrigger("Head3");
         }
     }
 

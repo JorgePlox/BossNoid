@@ -14756,7 +14756,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2147237457}
   serializedVersion: 7
-  lengthInSec: 5
+  lengthInSec: 4
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -19653,11 +19653,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockDuration: 40
   blockDurationProtected: 15
+  maxBlockDuration: 0
   previusBlocks:
   - {fileID: 3777110381869214169}
   - {fileID: 3777110381649673875}
   blockType: 1
   isDead: 0
+  cameraShake: {fileID: 0}
 --- !u!1 &3777110381557118840
 GameObject:
   m_ObjectHideFlags: 0
@@ -19862,9 +19864,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockDuration: 10
   blockDurationProtected: 1
+  maxBlockDuration: 0
   previusBlocks: []
   blockType: 1
   isDead: 0
+  cameraShake: {fileID: 0}
 --- !u!1 &3777110381869214169
 GameObject:
   m_ObjectHideFlags: 0
@@ -19997,9 +20001,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockDuration: 10
   blockDurationProtected: 1
+  maxBlockDuration: 0
   previusBlocks: []
   blockType: 1
   isDead: 0
+  cameraShake: {fileID: 0}
 --- !u!1 &3777110382028446079
 GameObject:
   m_ObjectHideFlags: 0
@@ -20009,10 +20015,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3777110382028446077}
-  - component: {fileID: 3777110382028446076}
   - component: {fileID: 3777110382028446050}
   - component: {fileID: 3777110382028446051}
   - component: {fileID: 1181837154}
+  - component: {fileID: 1692671108}
   m_Layer: 6
   m_Name: Head
   m_TagString: Destructable
@@ -20036,7 +20042,77 @@ Transform:
   m_Father: {fileID: 3777110381557118841}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3777110382028446076
+--- !u!60 &3777110382028446050
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3777110382028446079}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.5, y: 2.0625}
+    newSize: {x: 1.5, y: 2.0625}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.75, y: 1.03125}
+      - {x: -0.75, y: -0.71875}
+      - {x: -0.5625, y: -1.03125}
+      - {x: 0.5625, y: -1.03125}
+      - {x: 0.75, y: -0.71875}
+      - {x: 0.75, y: 1.03125}
+--- !u!114 &3777110382028446051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3777110382028446079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac729bd752cb2e47ad9895e08fb2cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockDuration: 30
+  blockDurationProtected: 30
+  maxBlockDuration: 0
+  previusBlocks:
+  - {fileID: 3777110381082413353}
+  blockType: 2
+  isDead: 0
+  cameraShake: {fileID: 0}
+--- !u!114 &1181837154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3777110382028446079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc53e5493823299439e21b8189847d67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: 
+    sentences:
+    - This... This is impossible
+    - YOU
+    - DIE
+    - HERE
+--- !u!212 &1692671108
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20087,71 +20163,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &3777110382028446050
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3777110382028446079}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 2.0625}
-    newSize: {x: 1.5, y: 2.0625}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.75, y: 1.03125}
-      - {x: -0.75, y: -0.71875}
-      - {x: -0.5625, y: -1.03125}
-      - {x: 0.5625, y: -1.03125}
-      - {x: 0.75, y: -0.71875}
-      - {x: 0.75, y: 1.03125}
---- !u!114 &3777110382028446051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3777110382028446079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ac729bd752cb2e47ad9895e08fb2cc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockDuration: 30
-  blockDurationProtected: 30
-  previusBlocks:
-  - {fileID: 3777110381082413353}
-  blockType: 2
-  isDead: 0
---- !u!114 &1181837154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3777110382028446079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc53e5493823299439e21b8189847d67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    name: 
-    sentences:
-    - This... This is impossible
-    - YOU
-    - DIE
-    - HERE

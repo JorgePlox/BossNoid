@@ -18,16 +18,24 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer playerRenderer;
     AudioSource playerAudio;
 
+    public AudioClip paralizeClip;
+    public AudioClip deathClip;
+
     private void Awake()
     {
         if (sharedInstance == null)
-        { 
-            sharedInstance = this; 
+        {
+            sharedInstance = this;
         }
 
         m_rigidbody = GetComponent<Rigidbody2D>();
         playerRenderer = GetComponent<SpriteRenderer>();
         playerAudio = GetComponent<AudioSource>();
+    }
+
+    private void Start()
+    {
+        UIManager.sharedInstance.UpdateLives(playerLives.ToString());
     }
 
 
@@ -51,17 +59,22 @@ public class PlayerController : MonoBehaviour
     public void LossLive()
     {
         playerLives--;
-        if (playerLives == 0)
+        UIManager.sharedInstance.UpdateLives(playerLives.ToString());
+        if (playerLives <= 0)
         {
             GameOver();
+        }
+        else
+        {
+            GameManager.sharedInstance.ResetBall();
         }
     }
 
     //El jugador pierde todas las vidas
     public void GameOver()
     {
-        LevelManager.sharedInstance.ChangeScene("MainMenu");
-        playerLives = 3;
+
+        StartCoroutine(DeathRoutine());
     }
 
     public void ParalizePlayer(float time)
@@ -73,10 +86,29 @@ public class PlayerController : MonoBehaviour
     {
         isParalized = true;
         if (playerRenderer != null) playerRenderer.color = Color.grey;
-        if (playerAudio != null) playerAudio.Play();
+        if (playerAudio != null && paralizeClip != null) playerAudio.PlayOneShot(paralizeClip);
         yield return new WaitForSeconds(time);
         if (playerRenderer != null) playerRenderer.color = Color.white;
         isParalized = false;
+    }
+
+    IEnumerator DeathRoutine()
+    {
+        if (playerAudio != null && deathClip != null) playerAudio.PlayOneShot(deathClip);
+
+        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        this.gameObject.GetComponent<Collider2D>().enabled = false;
+        this.gameObject.GetComponentInChildren<TrailRenderer>().enabled = false;
+
+        isParalized = true;
+
+        if (GetComponentInChildren<ParticleSystem>() != null)
+        {
+            GetComponentInChildren<ParticleSystem>().Play();
+        }
+
+        yield return new WaitForSeconds(2.0f);
+        LevelManager.sharedInstance.ChangeScene("LevelSelector");
     }
 
 }

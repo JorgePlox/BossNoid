@@ -8,8 +8,10 @@ public class KillZone : MonoBehaviour
     {
         if (otherCollider.gameObject.tag == "Ball")
         {
-            GameManager.sharedInstance.ResetBall();
-            PlayerController.sharedInstance.LossLive();
+            
+           PlayerController.sharedInstance.LossLive();
+           
+        
         }
     }
 }

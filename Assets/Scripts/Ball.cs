@@ -12,6 +12,7 @@ public class Ball : MonoBehaviour
 
     Animator ballAnimator;
 
+    Vector2 launchDirection = new Vector2 (0.1f, 0.9f).normalized;
 
     //Factor para ver que tan inclinada sale la pelota al choque con la paleta
     [SerializeField] float helpFactor = 0.5f;
@@ -19,6 +20,8 @@ public class Ball : MonoBehaviour
     //Ayuda para que la pelota no baje muy lento o se quede atascada;
     [SerializeField] float stuckVelocity = 1.0f;
     [SerializeField] float unstuckFactor = 5.0f;
+    float stuckDistance = 30.0f;
+
 
     //Sonido
     AudioSource ballAudio;
@@ -82,7 +85,7 @@ public class Ball : MonoBehaviour
         if (GameManager.sharedInstance.canThrowBall)
         {
             isBallLaunched = true;
-            ballRigidBody.velocity = Vector2.up * ballSpeed;
+            ballRigidBody.velocity = launchDirection * ballSpeed;
             ballCollider.enabled = true;
         }
     }
@@ -108,13 +111,19 @@ public class Ball : MonoBehaviour
             Vector2 direction = new Vector2(ballRigidBody.velocity.x, unstuckFactor);
             ballRigidBody.velocity = direction * ballSpeed;
         }
-        
-        else if (ballRigidBody.velocity.magnitude >= ballSpeed || ballRigidBody.velocity.magnitude <= -ballSpeed)
+
+        else if (ballRigidBody.velocity.magnitude != ballSpeed) // >= || ballRigidBody.velocity.magnitude <= -ballSpeed)
         {
             Vector2 direction = ballRigidBody.velocity.normalized;
-            ballRigidBody.velocity = direction*ballSpeed;
+            ballRigidBody.velocity = direction * ballSpeed;
         }
 
+        else if (Vector2.Distance(this.gameObject.transform.position, Vector2.zero) >= stuckDistance)
+        {
+            ResetLaunch();
+        }
+
+        
     
     }
 
