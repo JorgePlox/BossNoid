@@ -12,7 +12,7 @@ public class Ball : MonoBehaviour
 
     Animator ballAnimator;
 
-    Vector2 launchDirection = new Vector2 (0.1f, 0.9f).normalized;
+    Vector2 launchDirection = new Vector2(0.1f, 0.9f).normalized;
 
     //Factor para ver que tan inclinada sale la pelota al choque con la paleta
     [SerializeField] float helpFactor = 0.5f;
@@ -29,7 +29,7 @@ public class Ball : MonoBehaviour
     //collider para no hacer daño antes de lanzar la bola
     Collider2D ballCollider;
 
-    
+
 
     private void Awake()
     {
@@ -59,9 +59,12 @@ public class Ball : MonoBehaviour
 
         IsStuck();
 
-
     }
 
+    private void FixedUpdate()
+    {
+        
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -118,7 +121,7 @@ public class Ball : MonoBehaviour
             ballRigidBody.velocity = direction * ballSpeed;
         }
 
-        else if (Vector2.Distance(this.gameObject.transform.position, Vector2.zero) >= stuckDistance)
+        else if (Vector2.Distance(this.gameObject.transform.position, Vector2.zero) >= stuckDistance && !GameManager.sharedInstance.isGameOver)
         {
             ResetLaunch();
         }

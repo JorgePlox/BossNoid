@@ -20,7 +20,11 @@ public class GameManager : MonoBehaviour
     public float bestTime;
 
     //PauseMenu
-    public Canvas pauseCanvas;
+    [SerializeField] Canvas pauseCanvas;
+
+    //Death
+    public bool isGameOver = false;
+    [SerializeField] Canvas deathCanvas;
 
 
 
@@ -36,18 +40,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        RestartGame();
         CountBlocks();
-        myTime = 0.0f;
         bestTime = GetLevelBestTime();
         ResumeGame();
-
-
     }
 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !isGameOver)
         {
             if (isPaused)
             {
@@ -60,9 +62,16 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (!isPaused || canThrowBall)
+        if (!isPaused || canThrowBall || !isGameOver)
         {
             myTime += Time.deltaTime;
+        }
+
+        if (isGameOver && Input.anyKeyDown)
+        {
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
+                return;
+            LevelManager.sharedInstance.RestartScene();
         }
     }
 
@@ -130,6 +139,12 @@ public class GameManager : MonoBehaviour
 
             case Levels.Alien:
                 return PlayerPrefs.GetFloat("BestTimeAlien", 5999f);
+
+            case Levels.Dracula:
+                return PlayerPrefs.GetFloat("BestTimeDracula", 5999f);
+
+            case Levels.Clown:
+                return PlayerPrefs.GetFloat("BestTimeClown", 5999f);
         }
 
         return 5999f;
@@ -147,6 +162,14 @@ public class GameManager : MonoBehaviour
             case Levels.Alien:
                 PlayerPrefs.SetFloat("BestTimeAlien", newTime);
                 break;
+
+            case Levels.Dracula:
+                PlayerPrefs.SetFloat("BestTimeDracula", newTime);
+                break;
+
+            case Levels.Clown:
+                PlayerPrefs.SetFloat("BestTimeClown", newTime);
+                break;
         }
     }
 
@@ -157,14 +180,40 @@ public class GameManager : MonoBehaviour
         {
             case Levels.SkeleBoss:
                 PlayerPrefs.SetInt("FinishSkele", 1);
-                Debug.Log("finish");
                 break;
 
             case Levels.Alien:
                 PlayerPrefs.SetInt("FinishAlien", 1);
                 break;
 
+            case Levels.Dracula:
+                PlayerPrefs.SetInt("FinishDracula", 1);
+                break;
+
+            case Levels.Clown:
+                PlayerPrefs.SetInt("FinishClown", 1);
+                break;
+
         }
+    }
+
+
+    public void GameOver()
+    {
+        isGameOver = true;
+        canThrowBall = false;
+
+        if (deathCanvas != null)
+        {
+            deathCanvas.enabled = true;
+        }
+    }
+
+    void RestartGame()
+    {
+        deathCanvas.enabled = false;
+        isGameOver = false;
+        myTime = 0.0f;
     }
 
 }

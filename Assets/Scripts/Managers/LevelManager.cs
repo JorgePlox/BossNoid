@@ -8,7 +8,9 @@ public enum Levels
     MainMenu,
     LevelMenu,
     SkeleBoss,
-    Alien
+    Alien,
+    Dracula,
+    Clown
 }
 public class LevelManager : MonoBehaviour
 {
@@ -64,6 +66,20 @@ public class LevelManager : MonoBehaviour
         else if (level == "SkeleBoss")
         {
             currentLevel = Levels.SkeleBoss;
+        }
+        else if (level == "Alien")
+        {
+            currentLevel = Levels.Alien;
+        }
+
+        else if (level == "Dracula")
+        {
+            currentLevel = Levels.Dracula;
+        }
+
+        else if (level == "Clown")
+        {
+            currentLevel = Levels.Clown;
         }
 
     }

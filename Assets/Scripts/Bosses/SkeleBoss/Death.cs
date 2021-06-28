@@ -9,12 +9,13 @@ public class Death : StateMachineBehaviour
 
     float time = 0.0f;
     bool hasPlayedParticle = false;
+    bool isOver = false;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameManager.sharedInstance.ResetBall();
         GameManager.sharedInstance.canThrowBall = false;
+        GameManager.sharedInstance.ResetBall();
         head = GameObject.Find("Head");
         camera = GameObject.Find("MainCamera").GetComponent<CameraShake>();
         camera.enabled = true;
@@ -25,18 +26,24 @@ public class Death : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         time += Time.deltaTime;
+        if (time >= 10.0f && !isOver)
+        {
+            head.GetComponent<Block>().KillBoss();
+            isOver = true;
+        }
 
         if (time >= 4.0f && !hasPlayedParticle)
         {
             head.GetComponent<Block>().PlayFinalParticle();
             hasPlayedParticle = true;
         }
+
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        head.GetComponent<Block>().KillBoss();
     }
 
 

@@ -42,6 +42,7 @@ public class HealthBarManager : MonoBehaviour
             if (healthBar.value == 0)
             {
                 healthCanvas.enabled = false;
+                this.enabled = false;
             }
         }
     }

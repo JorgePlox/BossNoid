@@ -8,8 +8,10 @@ public class BestTimeManager : MonoBehaviour
     public static BestTimeManager sharedInstance;
 
     //BestTimesTexts
-    public Text SkeleBossBestTime;
-    public Text AlienBestTime;
+    [SerializeField] Text SkeleBossBestTime;
+    [SerializeField] Text AlienBestTime;
+    [SerializeField] Text DraculaBestTime;
+    [SerializeField] Text ClownBestTime;
 
     private void Awake()
     {
@@ -61,6 +63,42 @@ public class BestTimeManager : MonoBehaviour
             else
             {
                 AlienBestTime.enabled = false;
+            }
+        }
+
+        if (DraculaBestTime != null)
+        {
+            if (PlayerPrefs.GetInt("FinishDracula", 0) == 1)
+            {
+                AlienBestTime.enabled = true;
+                float time = PlayerPrefs.GetFloat("BestTimeDracula", 5999f);
+
+                string minutes = ((int)time / 60).ToString();
+                string seconds = (time % 60).ToString("f0");
+
+                DraculaBestTime.text = minutes + ":" + seconds;
+            }
+            else
+            {
+                DraculaBestTime.enabled = false;
+            }
+        }
+
+        if (ClownBestTime != null)
+        {
+            if (PlayerPrefs.GetInt("FinishClown", 0) == 1)
+            {
+                ClownBestTime.enabled = true;
+                float time = PlayerPrefs.GetFloat("BestTimeClown", 5999f);
+
+                string minutes = ((int)time / 60).ToString();
+                string seconds = (time % 60).ToString("f0");
+
+                ClownBestTime.text = minutes + ":" + seconds;
+            }
+            else
+            {
+                ClownBestTime.enabled = false;
             }
         }
 

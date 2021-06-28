@@ -9,11 +9,14 @@ public class Idle5Skele : StateMachineBehaviour
 
     GameObject head;
 
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         head = GameObject.Find("Head");
         nextMovement = Random.Range(1, 4);
+
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

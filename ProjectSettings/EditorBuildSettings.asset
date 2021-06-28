@@ -13,5 +13,14 @@ EditorBuildSettings:
     guid: 8e16b7df6ead1bc4191bb8e36388eaee
   - enabled: 1
     path: Assets/Scenes/Levels/SkeleBoss.unity
+    guid: 639ebe69f49fefd4099214769e62f8d0
+  - enabled: 1
+    path: Assets/Scenes/Levels/Alien.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Levels/Clown.unity
+    guid: d072469b454c6a843b32f4867efe0226
+  - enabled: 1
+    path: Assets/Scenes/Levels/Dracula.unity
+    guid: b16d8bd525587bc46852ee828ae2d2a9
   m_configObjects: {}
