@@ -16,9 +16,9 @@ public class PlayerController : MonoBehaviour
     //Paralize
     private bool isParalized = false;
     public AudioClip paralizeClip;
+    Coroutine paralizeCoroutine = null;
 
     //Slow
-    IEnumerator slowCoroutine;
     private bool isSlowed = false;
     float slowTime = 0.0f;
     [SerializeField] AudioClip slowedClip;
@@ -29,6 +29,13 @@ public class PlayerController : MonoBehaviour
     bool isInvisible = false;
     Coroutine invisibleCoroutine = null;
     [SerializeField] AudioClip invisibleClip;
+
+    //Stunned
+    bool isStunned = false;
+    //Coroutine stunCoroutine = null;
+    [SerializeField] AudioClip StunnedClip;
+
+
 
     SpriteRenderer playerRenderer;
     AudioSource playerAudio;
@@ -68,6 +75,9 @@ public class PlayerController : MonoBehaviour
                 if (isSlowed)
                     newVelocity = SlowSpeed(newVelocity);
 
+                if (isStunned)
+                    newVelocity = -newVelocity;
+
                 m_rigidbody.velocity = newVelocity;
             }
 
@@ -104,17 +114,26 @@ public class PlayerController : MonoBehaviour
 
     public void ParalizePlayer(float time)
     {
-        StartCoroutine(ParalizeTime(time));
+        if (paralizeCoroutine != null)
+        {
+            StopCoroutine(paralizeCoroutine);
+            paralizeCoroutine = StartCoroutine(ParalizeTime(time));
+        }
+        else
+        {
+            paralizeCoroutine = StartCoroutine(ParalizeTime(time));
+        }
+        
     }
 
     
     IEnumerator ParalizeTime(float time)
     {
         isParalized = true;
-        if (playerRenderer != null && !isInvisible) playerRenderer.color = Color.grey;
+        if (playerRenderer != null && (!isInvisible || !isStunned)) playerRenderer.color = Color.grey;
         if (playerAudio != null && paralizeClip != null) playerAudio.PlayOneShot(paralizeClip);
         yield return new WaitForSeconds(time);
-        if (playerRenderer != null && !isInvisible) playerRenderer.color = Color.white;
+        if (playerRenderer != null && (!isInvisible || !isStunned)) playerRenderer.color = Color.white;
         isParalized = false;
     }
 
@@ -124,7 +143,7 @@ public class PlayerController : MonoBehaviour
         slowTime = time;
         if (playerAudio != null && slowedClip != null) playerAudio.PlayOneShot(slowedClip);
         
-        if (playerRenderer != null && !isInvisible)
+        if (playerRenderer != null && (!isInvisible || !isStunned))
         {
             playerRenderer.color = new Vector4(playerRenderer.color.r * 0.75f, 1.0f, playerRenderer.color.b * 0.75f, 1.0f);
         }
@@ -185,13 +204,51 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(time);
         if (playerRenderer != null)
         {
-            playerRenderer.color = new Vector4(1f,1f,1f,1f);
+            if(isStunned)
+                playerRenderer.color = Color.red;
+            else
+                playerRenderer.color = new Vector4(1f,1f,1f,1f);
             GetComponentInChildren<TrailRenderer>().enabled = true;
         }
         isInvisible = false;
         invisibleCoroutine = null;
     }
 
+    public void StunPlayer(float time)
+    {
+        isStunned = !isStunned;
+        if (playerAudio != null && StunnedClip != null) playerAudio.PlayOneShot(StunnedClip);
+
+        if (isStunned)
+        {
+            if (playerRenderer != null && !isInvisible) playerRenderer.color = Color.red;
+        }
+        else if (!isStunned)
+        {
+            if (playerRenderer != null && !isInvisible) playerRenderer.color = Color.white;
+        }
+
+
+        //if (stunCoroutine != null)
+        //{
+        //    StopCoroutine(stunCoroutine);
+        //    paralizeCoroutine = StartCoroutine(Stunned(time));
+        //}
+        //else
+        //{
+        //    stunCoroutine = StartCoroutine(Stunned(time));
+        //}
+    }
+
+    //IEnumerator Stunned(float time)
+    //{
+    //    isStunned = true;
+    //    if (playerRenderer != null && !isInvisible) playerRenderer.color = Color.red;
+    //    if (playerAudio != null && StunnedClip != null) playerAudio.PlayOneShot(StunnedClip);
+    //    yield return new WaitForSeconds(time);
+    //    if (playerRenderer != null && !isInvisible) playerRenderer.color = Color.white;
+    //    isStunned = false;
+    //}
     
 
     IEnumerator DeathRoutine()

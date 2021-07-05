@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public int blockCount = 0;
 
     //pause
-    bool isPaused = false;
+    public bool isPaused = false;
 
     //puede tirar la bola?
     public bool canThrowBall = true;
