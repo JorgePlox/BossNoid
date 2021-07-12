@@ -1726,5 +1726,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2884208803c18284a9ec19a7e2ac4791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondSong: {fileID: 8300000, guid: 6a514b2c230bf364ea6edbb2c7dc9330, type: 3}
-  fadeTime: 1
+  secondSong: {fileID: 8300000, guid: bf487032f7831ef4b9ad1ba1ada4c802, type: 3}
+  fadeTime: 2

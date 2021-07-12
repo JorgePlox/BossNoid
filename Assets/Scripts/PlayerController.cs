@@ -130,10 +130,10 @@ public class PlayerController : MonoBehaviour
     IEnumerator ParalizeTime(float time)
     {
         isParalized = true;
-        if (playerRenderer != null && (!isInvisible || !isStunned)) playerRenderer.color = Color.grey;
+        if (playerRenderer != null && (!isInvisible && !isStunned)) playerRenderer.color = Color.grey;
         if (playerAudio != null && paralizeClip != null) playerAudio.PlayOneShot(paralizeClip);
         yield return new WaitForSeconds(time);
-        if (playerRenderer != null && (!isInvisible || !isStunned)) playerRenderer.color = Color.white;
+        if (playerRenderer != null && (!isInvisible && !isStunned)) playerRenderer.color = Color.white;
         isParalized = false;
     }
 
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
         slowTime = time;
         if (playerAudio != null && slowedClip != null) playerAudio.PlayOneShot(slowedClip);
         
-        if (playerRenderer != null && (!isInvisible || !isStunned))
+        if (playerRenderer != null && (!isInvisible && !isStunned))
         {
             playerRenderer.color = new Vector4(playerRenderer.color.r * 0.75f, 1.0f, playerRenderer.color.b * 0.75f, 1.0f);
         }
@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
         {
             slowTime = 0.0f;
             isSlowed = false;
-            if (playerRenderer != null && !isInvisible) playerRenderer.color = Color.white;
+            if (playerRenderer != null && (!isInvisible && !isStunned)) playerRenderer.color = Color.white;
             slowFactor = 1.0f;
         }
 

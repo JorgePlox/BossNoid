@@ -50,11 +50,11 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
+    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
-    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -1759,4 +1759,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Levels/Alien.unity
   - Assets/Scenes/Levels/Clown.unity
   - Assets/Scenes/Levels/Dracula.unity
-  playerPath: C:/Proyectos/Unity Proyectos/Builds/BossNoid/Boss_4.4/Nightmarenoid.exe
+  playerPath: C:/Proyectos/Unity Proyectos/Builds/BossNoid/NightmareNoid_1.2_win/Nightmarenoid.exe

@@ -1389,8 +1389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f2187ac93e23749b3b0c0640f4229d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondSong: {fileID: 0}
-  fadeTime: 0
+  secondSong: {fileID: 8300000, guid: 01a25ad80e621f7499b2913cb64197d4, type: 3}
+  fadeTime: 2
 --- !u!1102 &8443071892807363609
 AnimatorState:
   serializedVersion: 6
