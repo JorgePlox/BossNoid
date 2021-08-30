@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637613680780005042
-    m_Hash: 3403923038
+      ticks: 637616593276915153
+    m_Hash: 217320162
   m_LockFileStatus:
     m_FilePath: C:/Proyectos/Unity Proyectos/BossNoid/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637613680780125122
-    m_Hash: 3264963830
+      ticks: 637616593277035167
+    m_Hash: 819466499
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -689,119 +689,12 @@ m_PackageAssets:
         url: https://github.cds.internal.unity3d.com/unity/com.unity.cloud.collaborate.git
         revision: f079d307344f568804d3ea6d781013135e614e45
         path: 
-    - packageId: com.unity.ide.rider@2.0.7
+    - packageId: com.unity.ide.visualstudio@2.0.9
       testable: 0
       isDirectDependency: 1
-      version: 2.0.7
+      version: 2.0.9
       source: 1
-      resolvedPath: C:\Proyectos\Unity Proyectos\BossNoid\Library\PackageCache\com.unity.ide.rider@2.0.7
-      assetPath: Packages/com.unity.ide.rider
-      name: com.unity.ide.rider
-      displayName: JetBrains Rider Editor
-      author:
-        name: 
-        email: 
-        url: 
-      category: 
-      type: 
-      description: The JetBrains Rider Editor package provides an integration for
-        using the JetBrains Rider IDE as a code editor for Unity. It adds support
-        for generating .csproj files for code completion and auto-discovery of installations.
-      status: 4
-      errors: []
-      versions:
-        all:
-        - 1.0.2
-        - 1.0.6
-        - 1.0.8
-        - 1.1.0
-        - 1.1.1
-        - 1.1.2-preview
-        - 1.1.2-preview.2
-        - 1.1.3-preview.1
-        - 1.1.4-preview
-        - 1.1.4
-        - 1.2.0-preview
-        - 1.2.1
-        - 2.0.0-preview
-        - 2.0.1
-        - 2.0.2
-        - 2.0.3
-        - 2.0.5
-        - 2.0.7
-        - 3.0.1
-        - 3.0.2
-        - 3.0.3
-        - 3.0.4
-        - 3.0.5
-        - 3.0.6
-        - 3.0.7
-        compatible:
-        - 1.0.2
-        - 1.0.6
-        - 1.0.8
-        - 1.1.0
-        - 1.1.1
-        - 1.1.2-preview
-        - 1.1.2-preview.2
-        - 1.1.3-preview.1
-        - 1.1.4-preview
-        - 1.1.4
-        - 1.2.0-preview
-        - 1.2.1
-        - 2.0.0-preview
-        - 2.0.1
-        - 2.0.2
-        - 2.0.3
-        - 2.0.5
-        - 2.0.7
-        - 3.0.1
-        - 3.0.2
-        - 3.0.3
-        - 3.0.4
-        - 3.0.5
-        - 3.0.6
-        - 3.0.7
-        verified: 2.0.7
-      dependencies:
-      - name: com.unity.test-framework
-        version: 1.1.1
-      resolvedDependencies:
-      - name: com.unity.test-framework
-        version: 1.1.27
-      - name: com.unity.ext.nunit
-        version: 1.0.6
-      - name: com.unity.modules.imgui
-        version: 1.0.0
-      - name: com.unity.modules.jsonserialize
-        version: 1.0.0
-      keywords: []
-      registry:
-        id: main
-        name: 
-        url: https://packages.unity.com
-        scopes: []
-        isDefault: 1
-        capabilities: 7
-      hasRegistry: 1
-      hideInEditor: 1
-      entitlements:
-        isAllowed: 1
-      isAssetStorePackage: 0
-      datePublishedTicks: 637334461080000000
-      documentationUrl: 
-      hasRepository: 1
-      repository:
-        type: git
-        url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.rider.git
-        revision: abb44f053e9a41d2e00e149e32a19bcec76e98b4
-        path: 
-    - packageId: com.unity.ide.visualstudio@2.0.11
-      testable: 0
-      isDirectDependency: 1
-      version: 2.0.11
-      source: 1
-      resolvedPath: C:\Proyectos\Unity Proyectos\BossNoid\Library\PackageCache\com.unity.ide.visualstudio@2.0.11
+      resolvedPath: C:\Proyectos\Unity Proyectos\BossNoid\Library\PackageCache\com.unity.ide.visualstudio@2.0.9
       assetPath: Packages/com.unity.ide.visualstudio
       name: com.unity.ide.visualstudio
       displayName: Visual Studio Editor
@@ -875,82 +768,13 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
-      datePublishedTicks: 637613656180000000
+      datePublishedTicks: 637580705480000000
       documentationUrl: 
       hasRepository: 1
       repository:
         type: git
         url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.visualstudio.git
-        revision: 680e06d94ffca728223ae2cb14bb919cd354e2c1
-        path: 
-    - packageId: com.unity.ide.vscode@1.2.3
-      testable: 0
-      isDirectDependency: 1
-      version: 1.2.3
-      source: 1
-      resolvedPath: C:\Proyectos\Unity Proyectos\BossNoid\Library\PackageCache\com.unity.ide.vscode@1.2.3
-      assetPath: Packages/com.unity.ide.vscode
-      name: com.unity.ide.vscode
-      displayName: Visual Studio Code Editor
-      author:
-        name: 
-        email: 
-        url: 
-      category: 
-      type: 
-      description: Code editor integration for supporting Visual Studio Code as code
-        editor for unity. Adds support for generating csproj files for intellisense
-        purposes, auto discovery of installations, etc.
-      status: 4
-      errors: []
-      versions:
-        all:
-        - 1.0.2
-        - 1.0.3
-        - 1.0.7
-        - 1.1.0
-        - 1.1.2
-        - 1.1.3
-        - 1.1.4
-        - 1.2.0
-        - 1.2.1
-        - 1.2.2
-        - 1.2.3
-        compatible:
-        - 1.0.2
-        - 1.0.3
-        - 1.0.7
-        - 1.1.0
-        - 1.1.2
-        - 1.1.3
-        - 1.1.4
-        - 1.2.0
-        - 1.2.1
-        - 1.2.2
-        - 1.2.3
-        verified: 1.2.3
-      dependencies: []
-      resolvedDependencies: []
-      keywords: []
-      registry:
-        id: main
-        name: 
-        url: https://packages.unity.com
-        scopes: []
-        isDefault: 1
-        capabilities: 7
-      hasRegistry: 1
-      hideInEditor: 1
-      entitlements:
-        isAllowed: 1
-      isAssetStorePackage: 0
-      datePublishedTicks: 637394922300000000
-      documentationUrl: 
-      hasRepository: 1
-      repository:
-        type: git
-        url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.vscode.git
-        revision: b5ec9b38109e52b1b26597d521e4df75e042ebb9
+        revision: c7cd4c6319806423b3d918b3e9599244e3993d41
         path: 
     - packageId: com.unity.postprocessing@3.1.1
       testable: 0
@@ -1092,7 +916,6 @@ m_PackageAssets:
         - 1.1.26
         - 1.1.27
         compatible:
-        - 1.1.24
         - 1.1.26
         - 1.1.27
         verified: 1.1.27
@@ -3608,4 +3431,4 @@ m_PackageAssets:
   m_LocalPackages:
     m_LocalFileStatus: []
 m_ProjectPath: C:/Proyectos/Unity Proyectos/BossNoid/Packages
-m_EditorVersion: 2020.3.11f1 (99c7afb366b3)
+m_EditorVersion: 2020.3.13f1 (71691879b7f5)

@@ -18,7 +18,6 @@ public class Block : MonoBehaviour
 
     public int maxBlockDuration;
 
-
     public GameObject[] previusBlocks;
 
     public BlockType blockType = BlockType.normalBlock;
